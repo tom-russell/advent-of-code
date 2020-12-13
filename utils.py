@@ -17,6 +17,6 @@ def load_input_as_2d_array(filename: str) -> [int]:
         array = []
         
         for line in f:
-            array.append(list(line))
+            array.append(list(line.strip()))
         
         return array
