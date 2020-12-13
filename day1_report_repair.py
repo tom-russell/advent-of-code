@@ -1,11 +1,14 @@
-# --- Day 1: Report Repair ---
+# --- Day 1  ---
+#   _____                       _     _____                  _      
+#  |  __ \                     | |   |  __ \                (_)     
+#  | |__) |___ _ __   ___  _ __| |_  | |__) |___ _ __   __ _ _ _ __ 
+#  |  _  // _ \ '_ \ / _ \| '__| __| |  _  // _ \ '_ \ / _` | | '__|
+#  | | \ \  __/ |_) | (_) | |  | |_  | | \ \  __/ |_) | (_| | | |   
+#  |_|  \_\___| .__/ \___/|_|   \__| |_|  \_\___| .__/ \__,_|_|_|   
+#             | |                               | |                 
+#             |_|                               |_|                 
 
-# read the input and extract into a list of integers
-def load_inputs(filename: str):
-    with open(filename) as f:
-        content = f.read()
-        return [int(x) for x in content.strip().split('\n')]
-
+from utils import load_inputs_as_ints
 
 def part1(inputs) -> int:
     # iterate through every combination of 2 inputs until we find the combination 
@@ -57,12 +60,8 @@ def part2(inputs) -> int:
     exit(1)
 
 
-def part3() -> int:
-    pass
-
-
 if __name__ == "__main__":
-    inputs = load_inputs('day-1_input.txt')
+    inputs = load_inputs_as_ints('day1_input.txt')
 
     part1(inputs)
     #part2(inputs)
