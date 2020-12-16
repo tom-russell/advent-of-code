@@ -8,6 +8,10 @@
 #             | |                               | |                 
 #             |_|                               |_|                 
 
+import os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
 from utils import load_inputs_as_ints
 
 def part1(inputs) -> int:
@@ -61,7 +65,7 @@ def part2(inputs) -> int:
 
 
 if __name__ == "__main__":
-    inputs = load_inputs_as_ints('day1_input.txt')
+    inputs = load_inputs_as_ints('day1/day1_input.txt')
 
     part1(inputs)
     #part2(inputs)
