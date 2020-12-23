@@ -9,10 +9,15 @@
 #             |_|                               |_|                 
 
 import os, sys
-currentdir = os.path.dirname(os.path.realpath(__file__))
-parentdir = os.path.dirname(currentdir)
-sys.path.append(parentdir)
-from utils import load_inputs_as_ints
+
+
+def load_inputs_as_ints(filename: str) -> [int]:
+    """Read the input file and return into a list of strings."""
+    with open(filename) as f:
+        content = f.read()
+        return [int(x) for x in content.strip().split('\n')]
+        return content.strip().split('\n')
+
 
 def part1(inputs) -> int:
     # iterate through every combination of 2 inputs until we find the combination 

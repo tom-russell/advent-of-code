@@ -7,9 +7,6 @@
 #   \_____\__,_|___/\__\___/|_| |_| |_|  \_____\__,_|___/\__\___/|_| |_| |_|___/                                                                 
                                                                             
 import os, sys
-currentdir = os.path.dirname(os.path.realpath(__file__))
-parentdir = os.path.dirname(currentdir)
-sys.path.append(parentdir)
 
 
 def load_input(filename):

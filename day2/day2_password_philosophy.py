@@ -9,10 +9,14 @@
 #                                                                                |_|          |___/ 
 
 import os, sys
-currentdir = os.path.dirname(os.path.realpath(__file__))
-parentdir = os.path.dirname(currentdir)
-sys.path.append(parentdir)
-from utils import load_inputs_as_strings
+
+
+def load_inputs_as_strings(filename: str) -> [str]:
+    """Read the input file and return into a list of strings."""
+    with open(filename) as f:
+        content = f.read()
+        return content.strip().split('\n')
+
 
 def part1(inputs) -> int:
     valid_passwords = 0

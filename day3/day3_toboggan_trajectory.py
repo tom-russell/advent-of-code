@@ -8,7 +8,15 @@
 #                           __/ | __/ |                           _/ |                         __/ |
 #                          |___/ |___/                           |__/                         |___/ 
 
-from utils import load_input_as_2d_array
+def load_input_as_2d_array(filename: str) -> [int]:
+    """Read the input file and return into a 2D array of strings."""
+    with open(filename) as f:
+        array = []
+        
+        for line in f:
+            array.append(list(line.strip()))
+        
+        return array
 
 
 def get_trees_hit_count(input, x_velocity, y_velocity):
@@ -51,7 +59,7 @@ def part2(input):
 
 
 if __name__ == "__main__":
-    input = load_input_as_2d_array('day3_input.txt')
+    input = load_input_as_2d_array('day3/day3_input.txt')
     
     # part1(input)
     part2(input)
