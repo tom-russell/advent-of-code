@@ -1,8 +1,11 @@
 import os
 import sys
+import requests
+from pyfiglet import Figlet
+
 
 solution_template = """# --- Day {{DAYNO}} ---
-
+# {{ascii}}
 import os, sys
 
 
@@ -28,15 +31,14 @@ if __name__ == "__main__":
 
 
 if __name__ == "__main__":
-
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         raise RuntimeError(
             f"Expected 1 integer argument for the day number. Found {len(sys.argv) - 1}"
         )
 
     try:
         day_no = int(sys.argv[1])
-
+        day_name = str(sys.argv[2])
     except ValueError:
         raise RuntimeError(f"Input could not be converted to integer. Try again.")
 
@@ -49,7 +51,10 @@ if __name__ == "__main__":
     # create the solution file with the template code
     solution_filename = os.path.join(day_dir, f"day{day_no}_solution.py")
     with open(solution_filename, "w") as f:
-        f.writelines(solution_template.replace("{{DAYNO}}", str(day_no)))
+        ascii = Figlet("slant").renderText(day_name)
+        ascii = ascii.replace("\n", "\n# ")
+        day_output = solution_template.replace("{{DAYNO}}", str(day_no)).replace("{{ascii}}", ascii)
+        f.writelines(day_output)
 
     # create the empty input files
     input_filename1 = os.path.join(day_dir, f"day{day_no}_input.txt")
