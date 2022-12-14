@@ -1,8 +1,7 @@
 import os
 import sys
 
-import requests
-from pyfiglet import Figlet
+from pyfiglet import figlet_format
 
 solution_template = """# --- Day {{DAYNO}} ---
 # {{ascii}}
@@ -53,7 +52,7 @@ if __name__ == "__main__":
     # create the solution file with the template code
     solution_filename = os.path.join(day_dir, f"{day_no}_solution.py")
     with open(solution_filename, "w") as f:
-        ascii = Figlet("slant").renderText(day_name)
+        ascii = figlet_format(font="slant", text=day_name)
         ascii = ascii.replace("\n", "\n# ")
         day_output = solution_template.replace("{{DAYNO}}", str(day_no)).replace("{{ascii}}", ascii)
         f.writelines(day_output)
