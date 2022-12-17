@@ -9,8 +9,11 @@ import os, sys
 
 
 def load_input(filename):
+    lines = []
     with open(filename) as f:
-        return f.readlines()
+         while x:= f.readline():
+            lines.append(x.strip())
+    return lines
 
 
 def part1(input):
@@ -22,8 +25,8 @@ def part2(input):
 
 
 if __name__ == "__main__":
-    input = load_input('{{DAYNO}}/{{DAYNO}}_input_simple.txt')
-    input = load_input('{{DAYNO}}/{{DAYNO}}_input.txt')
+    input = load_input('{{DAYNO}}/input_simple.txt')
+    # input = load_input('{{DAYNO}}/input.txt')
 
     part1(input)
     # part2(input)
@@ -58,7 +61,7 @@ if __name__ == "__main__":
         f.writelines(day_output)
 
     # create the empty input files
-    input_filename1 = os.path.join(day_dir, f"{day_no}_input.txt")
-    input_filename2 = os.path.join(day_dir, f"{day_no}_input_simple.txt")
+    input_filename1 = os.path.join(day_dir, f"input.txt")
+    input_filename2 = os.path.join(day_dir, f"input_simple.txt")
     open(input_filename1, "w")
     open(input_filename2, "w")
