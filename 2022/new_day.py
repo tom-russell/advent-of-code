@@ -25,8 +25,9 @@ def part2(input):
 
 
 if __name__ == "__main__":
-    input = load_input('{{DAYNO}}/input_simple.txt')
-    # input = load_input('{{DAYNO}}/input.txt')
+    dir = '/'.join(__file__.split('/')[:-1])
+    input = load_input(dir + '/input_simple.txt')
+    # input = load_input(dir + '/input.txt')
 
     part1(input)
     # part2(input)
