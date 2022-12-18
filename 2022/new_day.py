@@ -3,10 +3,8 @@ import sys
 
 from pyfiglet import figlet_format
 
-solution_template = """# --- Day {{DAYNO}} ---
+solution_template = """# --- {{DAYNO}} ---
 # {{ascii}}
-import os, sys
-
 
 def load_input(filename):
     lines = []
