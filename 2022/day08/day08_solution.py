@@ -31,21 +31,26 @@ def parse_grid(input):
     return grid
 
 
+current_tree = (0, 0)
 def print_grid(grid: list[list[str]], star: tuple[int, int]=(-1, -1)):
+    global current_tree
     for y in range(0, len(grid)):
         row_out = ' '
         for x in range(0, len(grid[0])):
             val = str(grid[y][x])
-            if star[0] == y and star[1] == x:
+            if star == (y, x):
+                val = 'o'
+            elif current_tree == (y, x):
                 val = '*'
+
             row_out += val + ' '
         print(row_out)
 
-  
+
 def is_visible(grid, y, x, max_y, max_x, dir: tuple=(1, 0)) -> bool:
     next_y = y + dir[0]
     next_x = x + dir[1]
-    print("next:", next_y, next_x)
+    print("NEXT TREE..")
     print_grid(grid, (next_y, next_x))
     next_height = grid[next_y][next_x]
     if next_height >= grid[y][x]:
@@ -64,7 +69,6 @@ def part1(grid):
     print_grid(grid)
     max_y = len(grid) - 1
     max_x = len(grid[0]) - 1
-    print("maxes",  max_x, max_y)
     
     perimeter = len(grid) * 2 + len(grid[0]) * 2 - 4
     interior_trees = 0
@@ -73,6 +77,8 @@ def part1(grid):
     for y in range(1, max_y):
         for x in range(1, max_x):
             print('--', x, y, '--')
+            global current_tree
+            current_tree = (y, x)
             if (is_visible(grid, y, x, max_y, max_x, (1, 0)) or 
                is_visible(grid, y, x, max_y, max_x, (0, 1)) or 
                is_visible(grid, y, x, max_y, max_x, (0, -1)) or 
