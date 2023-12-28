@@ -9,7 +9,7 @@ solution_template = """# --- {{DAYNO}} ---
 def load_input(filename):
     lines = []
     with open(filename) as f:
-         while x:= f.readline():
+        while x := f.readline():
             lines.append(x.strip())
     return lines
 
@@ -33,34 +33,36 @@ if __name__ == "__main__":
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         raise RuntimeError(
-            f"Expected 1 integer argument for the day number. Found {len(sys.argv) - 1}"
+            f"Expected 3 arguments - year, day_no and day_name. Found {len(sys.argv) - 1}"
         )
 
     try:
-        day_no = int(sys.argv[1])
-        day_no = f"day{str(day_no).zfill(2)}"
-        day_name = str(sys.argv[2])
+        aoc_year = str(sys.argv[1])
+        day_no = f"day{str(int(sys.argv[2])).zfill(2)}"
+        day_name = str(sys.argv[3])
     except ValueError:
-        raise RuntimeError(f"Input could not be converted to integer. Try again.")
+        raise RuntimeError("Input could not be converted to integer. Try again.")
 
     # create the directory for the day's challenge
     aoc_dir = os.path.dirname(os.path.abspath(__file__))
-    day_dir = os.path.join(aoc_dir, day_no)
-    print(day_dir)
+    day_dir = os.path.join(aoc_dir, aoc_year, day_no)
     os.mkdir(day_dir)
 
     # create the solution file with the template code
     solution_filename = os.path.join(day_dir, f"{day_no}_solution.py")
     with open(solution_filename, "w") as f:
-        ascii = figlet_format(font="slant", text=day_name)
-        ascii = ascii.replace("\n", "\n# ")
-        day_output = solution_template.replace("{{DAYNO}}", str(day_no)).replace("{{ascii}}", ascii)
+        figlet_output = figlet_format(font="slant", text=day_name)
+        ascii = figlet_output.replace("\n", "\n# ")
+        ascii = "\n".join(line.rstrip() for line in ascii.split("\n"))
+        day_output = solution_template.replace("{{DAYNO}}", str(day_no)).replace(
+            "{{ascii}}", ascii
+        )
         f.writelines(day_output)
 
     # create the empty input files
-    input_filename1 = os.path.join(day_dir, f"input.txt")
-    input_filename2 = os.path.join(day_dir, f"input_simple.txt")
+    input_filename1 = os.path.join(day_dir, "input.txt")
+    input_filename2 = os.path.join(day_dir, "input_simple.txt")
     open(input_filename1, "w")
     open(input_filename2, "w")
