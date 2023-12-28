@@ -78,10 +78,24 @@ def part2(input):
     print(sum)
 
 
+def part_2_alternate(input):
+    sum = 0
+    for line in input:
+        char_list = list(line)
+        parsed = []
+        for index in range(len(char_list)):
+            for digit, value in NUMBER_MAP.items():
+                if "".join(char_list[int(index):]).startswith(digit):
+                    parsed.append(value)
+        sum += int(parsed[0] + parsed[-1])
+    print(sum)
+
+
 if __name__ == "__main__":
     dir = "/".join(__file__.split("/")[:-1])
     # input = load_input(dir + "/input_simple_2.txt")
     input = load_input(dir + "/input.txt")
 
     # part1(input)
-    part2(input)
+    # part2(input)
+    part_2_alternate(input)
